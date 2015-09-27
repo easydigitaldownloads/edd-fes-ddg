@@ -1,5 +1,5 @@
 <?php
-function fes_ddg_create_data(){
+function fes_ddg_create_data( $cli = false ){
 	ini_set( 'max_execution_time', 0 );
 	@set_time_limit (0 );
 
@@ -8,10 +8,10 @@ function fes_ddg_create_data(){
 	while ( $vendor_id < 61 ){
 		if ( $vendor_id < 21 ){
 			// for the first 20 make them a pending vendor
-			$vendor = fes_ddg_create_a_vendor( $vendor_id, 'pending' );
+			$vendor = fes_ddg_create_a_vendor( $cli, $vendor_id, 'pending' );
 		} else if ( $vendor_id < 41 ){
 			// for the next 20 make them a frontend vendor
-			$vendor = fes_ddg_create_a_vendor( $vendor_id, 'approved' );
+			$vendor = fes_ddg_create_a_vendor( $cli, $vendor_id, 'approved' );
 			
 			switch ( $vendor_id ){ 
 				case 21:
@@ -23,23 +23,23 @@ function fes_ddg_create_data(){
 					break;
 				case 26:
 					// one product with 20% commission
-					create_simple_download( $download_id, $vendor, 'publish', '15.00', 'percentage', '20' );
+					create_simple_download( $cli, $download_id, $vendor, 'publish', '15.00', 'percentage', '20' );
 					$download_id++;
 				case 27:
 					// one product with 100% commission
-					create_simple_download( $download_id, $vendor, 'publish', '15.00', 'percentage', '100' );
+					create_simple_download( $cli, $download_id, $vendor, 'publish', '15.00', 'percentage', '100' );
 					$download_id++;
 				case 28:
 					// one product with $5 flat rate
-					create_simple_download( $download_id, $vendor, 'publish', '15.00', 'flat', '5' );
+					create_simple_download( $cli, $download_id, $vendor, 'publish', '15.00', 'flat', '5' );
 					$download_id++;
 				case 29:
 					// one product with $10 flat rate
-					create_simple_download( $download_id, $vendor, 'publish', '15.00', 'percentage', '10' );
+					create_simple_download( $cli, $download_id, $vendor, 'publish', '15.00', 'percentage', '10' );
 					$download_id++;
 				case 30:
 					// one product no commission
-					create_simple_download( $download_id, $vendor, 'publish', '15.00', false, '20' );
+					create_simple_download( $cli, $download_id, $vendor, 'publish', '15.00', false, '20' );
 					$download_id++;
 					break;
 				case 31:
@@ -49,23 +49,23 @@ function fes_ddg_create_data(){
 				case 35:
 					// 5 products, one of each of case 25-30
 						// one product with 20% commission
-						create_simple_download( $download_id, $vendor, 'publish', '15.00', 'percentage', '20' );
+						create_simple_download( $cli, $download_id, $vendor, 'publish', '15.00', 'percentage', '20' );
 						$download_id++;
 
 						// one product with 100% commission
-						create_simple_download( $download_id, $vendor, 'publish', '15.00', 'percentage', '100' );
+						create_simple_download( $cli, $download_id, $vendor, 'publish', '15.00', 'percentage', '100' );
 						$download_id++;
 
 						// one product with $5 flat rate
-						create_simple_download( $download_id, $vendor, 'publish', '15.00', 'flat', '5' );
+						create_simple_download( $cli, $download_id, $vendor, 'publish', '15.00', 'flat', '5' );
 						$download_id++;
 
 						// one product with $10 flat rate
-						create_simple_download( $download_id, $vendor, 'publish', '15.00', 'percentage', '10' );
+						create_simple_download( $cli, $download_id, $vendor, 'publish', '15.00', 'percentage', '10' );
 						$download_id++;
 
 						// one product no commission
-						create_simple_download( $download_id, $vendor, 'publish', '15.00', false, '20' );
+						create_simple_download( $cli, $download_id, $vendor, 'publish', '15.00', false, '20' );
 						$download_id++;
 					break;
 				case 36:
@@ -76,212 +76,212 @@ function fes_ddg_create_data(){
 					// 20 products, one of each of case 25-30, 10 simple/10 variable, 5 each published/pending
 						// variable pending
 							// one product with 20% commission
-							create_variable_download( $download_id, $vendor, 'pending', '15.00', '5.00', 'percentage', '20' );
+							create_variable_download( $cli, $download_id, $vendor, 'pending', '15.00', '5.00', 'percentage', '20' );
 							$download_id++;
 
 							// one product with 100% commission
-							create_variable_download( $download_id, $vendor, 'pending', '15.00', '5.00', 'percentage', '100' );
+							create_variable_download( $cli, $download_id, $vendor, 'pending', '15.00', '5.00', 'percentage', '100' );
 							$download_id++;
 
 							// one product with $5 flat rate
-							create_variable_download( $download_id, $vendor, 'pending', '15.00', '5.00', 'flat', '5' );
+							create_variable_download( $cli, $download_id, $vendor, 'pending', '15.00', '5.00', 'flat', '5' );
 							$download_id++;
 
 							// one product with $10 flat rate
-							create_variable_download( $download_id, $vendor, 'pending', '15.00', '5.00', 'percentage', '10' );
+							create_variable_download( $cli, $download_id, $vendor, 'pending', '15.00', '5.00', 'percentage', '10' );
 							$download_id++;
 							
 							// one product no commission
-							create_variable_download( $download_id, $vendor, 'pending', '15.00', '5.00', false, '20' );
+							create_variable_download( $cli, $download_id, $vendor, 'pending', '15.00', '5.00', false, '20' );
 							$download_id++;
 						// variable published
 							// one product with 20% commission
-							create_variable_download( $download_id, $vendor, 'publish', '15.00', '5.00', 'percentage', '20' );
+							create_variable_download( $cli, $download_id, $vendor, 'publish', '15.00', '5.00', 'percentage', '20' );
 							$download_id++;
 
 							// one product with 100% commission
-							create_variable_download( $download_id, $vendor, 'publish', '15.00', '5.00', 'percentage', '100' );
+							create_variable_download( $cli, $download_id, $vendor, 'publish', '15.00', '5.00', 'percentage', '100' );
 							$download_id++;
 
 							// one product with $5 flat rate
-							create_variable_download( $download_id, $vendor, 'publish', '15.00', '5.00', 'flat', '5' );
+							create_variable_download( $cli, $download_id, $vendor, 'publish', '15.00', '5.00', 'flat', '5' );
 							$download_id++;
 
 							// one product with $10 flat rate
-							create_variable_download( $download_id, $vendor, 'publish', '15.00', '5.00', 'percentage', '10' );
+							create_variable_download( $cli, $download_id, $vendor, 'publish', '15.00', '5.00', 'percentage', '10' );
 							$download_id++;
 							
 							// one product no commission
-							create_variable_download( $download_id, $vendor, 'publish', '15.00', '5.00', false, '20' );
+							create_variable_download( $cli, $download_id, $vendor, 'publish', '15.00', '5.00', false, '20' );
 							$download_id++;
 						// simple pending
 							// one product with 20% commission
-							create_simple_download( $download_id, $vendor, 'pending', '15.00', 'percentage', '20' );
+							create_simple_download( $cli, $download_id, $vendor, 'pending', '15.00', 'percentage', '20' );
 							$download_id++;
 
 							// one product with 100% commission
-							create_simple_download( $download_id, $vendor, 'pending', '15.00', 'percentage', '100' );
+							create_simple_download( $cli, $download_id, $vendor, 'pending', '15.00', 'percentage', '100' );
 							$download_id++;
 
 							// one product with $5 flat rate
-							create_simple_download( $download_id, $vendor, 'pending', '15.00', 'flat', '5' );
+							create_simple_download( $cli, $download_id, $vendor, 'pending', '15.00', 'flat', '5' );
 							$download_id++;
 
 							// one product with $10 flat rate
-							create_simple_download( $download_id, $vendor, 'pending', '15.00', 'percentage', '10' );
+							create_simple_download( $cli, $download_id, $vendor, 'pending', '15.00', 'percentage', '10' );
 							$download_id++;
 							
 							// one product no commission
-							create_simple_download( $download_id, $vendor, 'pending', '15.00', false, '20' );
+							create_simple_download( $cli, $download_id, $vendor, 'pending', '15.00', false, '20' );
 							$download_id++;
 						// simple published
 							// one product with 20% commission
-							create_simple_download( $download_id, $vendor, 'publish', '15.00', 'percentage', '20' );
+							create_simple_download( $cli, $download_id, $vendor, 'publish', '15.00', 'percentage', '20' );
 							$download_id++;
 
 							// one product with 100% commission
-							create_simple_download( $download_id, $vendor, 'publish', '15.00', 'percentage', '100' );
+							create_simple_download( $cli, $download_id, $vendor, 'publish', '15.00', 'percentage', '100' );
 							$download_id++;
 
 							// one product with $5 flat rate
-							create_simple_download( $download_id, $vendor, 'publish', '15.00', 'flat', '5' );
+							create_simple_download( $cli, $download_id, $vendor, 'publish', '15.00', 'flat', '5' );
 							$download_id++;
 
 							// one product with $10 flat rate
-							create_simple_download( $download_id, $vendor, 'publish', '15.00', 'percentage', '10' );
+							create_simple_download( $cli, $download_id, $vendor, 'publish', '15.00', 'percentage', '10' );
 							$download_id++;
 							
 							// one product no commission
-							create_simple_download( $download_id, $vendor, 'publish', '15.00', false, '20' );
+							create_simple_download( $cli, $download_id, $vendor, 'publish', '15.00', false, '20' );
 							$download_id++;
 					break;
 				case 40:
 					// 30 products, one of each of case 25-30, 10 simple/10 variable/10 trash, 5 each published/pending
 						// variable pending
 							// one product with 20% commission
-							create_variable_download( $download_id, $vendor, 'pending', '15.00', '5.00', 'percentage', '20' );
+							create_variable_download( $cli, $download_id, $vendor, 'pending', '15.00', '5.00', 'percentage', '20' );
 							$download_id++;
 
 							// one product with 100% commission
-							create_variable_download( $download_id, $vendor, 'pending', '15.00', '5.00', 'percentage', '100' );
+							create_variable_download( $cli, $download_id, $vendor, 'pending', '15.00', '5.00', 'percentage', '100' );
 							$download_id++;
 
 							// one product with $5 flat rate
-							create_variable_download( $download_id, $vendor, 'pending', '15.00', '5.00', 'flat', '5' );
+							create_variable_download( $cli, $download_id, $vendor, 'pending', '15.00', '5.00', 'flat', '5' );
 							$download_id++;
 
 							// one product with $10 flat rate
-							create_variable_download( $download_id, $vendor, 'pending', '15.00', '5.00', 'percentage', '10' );
+							create_variable_download( $cli, $download_id, $vendor, 'pending', '15.00', '5.00', 'percentage', '10' );
 							$download_id++;
 							
 							// one product no commission
-							create_variable_download( $download_id, $vendor, 'pending', '15.00', '5.00', false, '20' );
+							create_variable_download( $cli, $download_id, $vendor, 'pending', '15.00', '5.00', false, '20' );
 							$download_id++;
 						// variable published
 							// one product with 20% commission
-							create_variable_download( $download_id, $vendor, 'publish', '15.00', '5.00', 'percentage', '20' );
+							create_variable_download( $cli, $download_id, $vendor, 'publish', '15.00', '5.00', 'percentage', '20' );
 							$download_id++;
 
 							// one product with 100% commission
-							create_variable_download( $download_id, $vendor, 'publish', '15.00', '5.00', 'percentage', '100' );
+							create_variable_download( $cli, $download_id, $vendor, 'publish', '15.00', '5.00', 'percentage', '100' );
 							$download_id++;
 
 							// one product with $5 flat rate
-							create_variable_download( $download_id, $vendor, 'publish', '15.00', '5.00', 'flat', '5' );
+							create_variable_download( $cli, $download_id, $vendor, 'publish', '15.00', '5.00', 'flat', '5' );
 							$download_id++;
 
 							// one product with $10 flat rate
-							create_variable_download( $download_id, $vendor, 'publish', '15.00', '5.00', 'percentage', '10' );
+							create_variable_download( $cli, $download_id, $vendor, 'publish', '15.00', '5.00', 'percentage', '10' );
 							$download_id++;
 							
 							// one product no commission
-							create_variable_download( $download_id, $vendor, 'publish', '15.00', '5.00', false, '20' );
+							create_variable_download( $cli, $download_id, $vendor, 'publish', '15.00', '5.00', false, '20' );
 							$download_id++;
 						// simple pending
 							// one product with 20% commission
-							create_simple_download( $download_id, $vendor, 'pending', '15.00', 'percentage', '20' );
+							create_simple_download( $cli, $download_id, $vendor, 'pending', '15.00', 'percentage', '20' );
 							$download_id++;
 
 							// one product with 100% commission
-							create_simple_download( $download_id, $vendor, 'pending', '15.00', 'percentage', '100' );
+							create_simple_download( $cli, $download_id, $vendor, 'pending', '15.00', 'percentage', '100' );
 							$download_id++;
 
 							// one product with $5 flat rate
-							create_simple_download( $download_id, $vendor, 'pending', '15.00', 'flat', '5' );
+							create_simple_download( $cli, $download_id, $vendor, 'pending', '15.00', 'flat', '5' );
 							$download_id++;
 
 							// one product with $10 flat rate
-							create_simple_download( $download_id, $vendor, 'pending', '15.00', 'percentage', '10' );
+							create_simple_download( $cli, $download_id, $vendor, 'pending', '15.00', 'percentage', '10' );
 							$download_id++;
 							
 							// one product no commission
-							create_simple_download( $download_id, $vendor, 'pending', '15.00', false, '20' );
+							create_simple_download( $cli, $download_id, $vendor, 'pending', '15.00', false, '20' );
 							$download_id++;
 						// simple published
 							// one product with 20% commission
-							create_simple_download( $download_id, $vendor, 'publish', '15.00', 'percentage', '20' );
+							create_simple_download( $cli, $download_id, $vendor, 'publish', '15.00', 'percentage', '20' );
 							$download_id++;
 
 							// one product with 100% commission
-							create_simple_download( $download_id, $vendor, 'publish', '15.00', 'percentage', '100' );
+							create_simple_download( $cli, $download_id, $vendor, 'publish', '15.00', 'percentage', '100' );
 							$download_id++;
 
 							// one product with $5 flat rate
-							create_simple_download( $download_id, $vendor, 'publish', '15.00', 'flat', '5' );
+							create_simple_download( $cli, $download_id, $vendor, 'publish', '15.00', 'flat', '5' );
 							$download_id++;
 
 							// one product with $10 flat rate
-							create_simple_download( $download_id, $vendor, 'publish', '15.00', 'percentage', '10' );
+							create_simple_download( $cli, $download_id, $vendor, 'publish', '15.00', 'percentage', '10' );
 							$download_id++;
 							
 							// one product no commission
-							create_simple_download( $download_id, $vendor, 'publish', '15.00', false, '20' );
+							create_simple_download( $cli, $download_id, $vendor, 'publish', '15.00', false, '20' );
 							$download_id++;
 						// variable trash
 							// one product with 20% commission
-							create_variable_download( $download_id, $vendor, 'trash', '15.00', '5.00', 'percentage', '20' );
+							create_variable_download( $cli, $download_id, $vendor, 'trash', '15.00', '5.00', 'percentage', '20' );
 							$download_id++;
 
 							// one product with 100% commission
-							create_variable_download( $download_id, $vendor, 'trash', '15.00', '5.00', 'percentage', '100' );
+							create_variable_download( $cli, $download_id, $vendor, 'trash', '15.00', '5.00', 'percentage', '100' );
 							$download_id++;
 
 							// one product with $5 flat rate
-							create_variable_download( $download_id, $vendor, 'trash', '15.00', '5.00', 'flat', '5' );
+							create_variable_download( $cli, $download_id, $vendor, 'trash', '15.00', '5.00', 'flat', '5' );
 							$download_id++;
 
 							// one product with $10 flat rate
-							create_variable_download( $download_id, $vendor, 'trash', '15.00', '5.00', 'percentage', '10' );
+							create_variable_download( $cli, $download_id, $vendor, 'trash', '15.00', '5.00', 'percentage', '10' );
 							$download_id++;
 							
 							// one product no commission
-							create_variable_download( $download_id, $vendor, 'trash', '15.00', '5.00', false, '20' );
+							create_variable_download( $cli, $download_id, $vendor, 'trash', '15.00', '5.00', false, '20' );
 							$download_id++;
 						// simple trash
 							// one product with 20% commission
-							create_simple_download( $download_id, $vendor, 'trash', '15.00', 'percentage', '20' );
+							create_simple_download( $cli, $download_id, $vendor, 'trash', '15.00', 'percentage', '20' );
 							$download_id++;
 
 							// one product with 100% commission
-							create_simple_download( $download_id, $vendor, 'trash', '15.00', 'percentage', '100' );
+							create_simple_download( $cli, $download_id, $vendor, 'trash', '15.00', 'percentage', '100' );
 							$download_id++;
 
 							// one product with $5 flat rate
-							create_simple_download( $download_id, $vendor, 'trash', '15.00', 'flat', '5' );
+							create_simple_download( $cli, $download_id, $vendor, 'trash', '15.00', 'flat', '5' );
 							$download_id++;
 
 							// one product with $10 flat rate
-							create_simple_download( $download_id, $vendor, 'trash', '15.00', 'percentage', '10' );
+							create_simple_download( $cli, $download_id, $vendor, 'trash', '15.00', 'percentage', '10' );
 							$download_id++;
 							
 							// one product no commission
-							create_simple_download( $download_id, $vendor, 'trash', '15.00', false, '20' );
+							create_simple_download( $cli, $download_id, $vendor, 'trash', '15.00', false, '20' );
 							$download_id++;
 					break;
 			}
 		} else if ( $vendor_id < 61 ){
 			// for the next 20 make them a suspended vendor
-			$vendor = fes_ddg_create_a_vendor( $vendor_id, 'suspended' );
+			$vendor = fes_ddg_create_a_vendor( $cli, $vendor_id, 'suspended' );
 			
 			switch ( $vendor_id ){ 
 				case 41:
@@ -293,23 +293,23 @@ function fes_ddg_create_data(){
 					break;
 				case 46:
 					// one product with 20% commission
-					create_simple_download( $download_id, $vendor, 'trash', '15.00', 'percentage', '20' );
+					create_simple_download( $cli, $download_id, $vendor, 'trash', '15.00', 'percentage', '20' );
 					$download_id++;
 				case 47:
 					// one product with 100% commission
-					create_simple_download( $download_id, $vendor, 'trash', '15.00', 'percentage', '100' );
+					create_simple_download( $cli, $download_id, $vendor, 'trash', '15.00', 'percentage', '100' );
 					$download_id++;
 				case 48:
 					// one product with $5 flat rate
-					create_simple_download( $download_id, $vendor, 'trash', '15.00', 'flat', '5' );
+					create_simple_download( $cli, $download_id, $vendor, 'trash', '15.00', 'flat', '5' );
 					$download_id++;
 				case 49:
 					// one product with $10 flat rate
-					create_simple_download( $download_id, $vendor, 'trash', '15.00', 'percentage', '10' );
+					create_simple_download( $cli, $download_id, $vendor, 'trash', '15.00', 'percentage', '10' );
 					$download_id++;
 				case 50:
 					// one product no commission
-					create_simple_download( $download_id, $vendor, 'trash', '15.00', false, '20' );
+					create_simple_download( $cli, $download_id, $vendor, 'trash', '15.00', false, '20' );
 					$download_id++;
 					break;
 				case 51:
@@ -319,23 +319,23 @@ function fes_ddg_create_data(){
 				case 55:
 					// 5 products, one of each of case 25-30
 						// one product with 20% commission
-						create_simple_download( $download_id, $vendor, 'trash', '15.00', 'percentage', '20' );
+						create_simple_download( $cli, $download_id, $vendor, 'trash', '15.00', 'percentage', '20' );
 						$download_id++;
 
 						// one product with 100% commission
-						create_simple_download( $download_id, $vendor, 'trash', '15.00', 'percentage', '100' );
+						create_simple_download( $cli, $download_id, $vendor, 'trash', '15.00', 'percentage', '100' );
 						$download_id++;
 
 						// one product with $5 flat rate
-						create_simple_download( $download_id, $vendor, 'trash', '15.00', 'flat', '5' );
+						create_simple_download( $cli, $download_id, $vendor, 'trash', '15.00', 'flat', '5' );
 						$download_id++;
 
 						// one product with $10 flat rate
-						create_simple_download( $download_id, $vendor, 'trash', '15.00', 'percentage', '10' );
+						create_simple_download( $cli, $download_id, $vendor, 'trash', '15.00', 'percentage', '10' );
 						$download_id++;
 
 						// one product no commission
-						create_simple_download( $download_id, $vendor, 'trash', '15.00', false, '20' );
+						create_simple_download( $cli, $download_id, $vendor, 'trash', '15.00', false, '20' );
 						$download_id++;
 					break;
 				case 56:
@@ -346,206 +346,206 @@ function fes_ddg_create_data(){
 					// 20 products, one of each of case 25-30, 10 simple/10 variable, all trash
 						// variable trash
 							// one product with 20% commission
-							create_variable_download( $download_id, $vendor, 'trash', '15.00', '5.00', 'percentage', '20' );
+							create_variable_download( $cli, $download_id, $vendor, 'trash', '15.00', '5.00', 'percentage', '20' );
 							$download_id++;
 
 							// one product with 100% commission
-							create_variable_download( $download_id, $vendor, 'trash', '15.00', '5.00', 'percentage', '100' );
+							create_variable_download( $cli, $download_id, $vendor, 'trash', '15.00', '5.00', 'percentage', '100' );
 							$download_id++;
 
 							// one product with $5 flat rate
-							create_variable_download( $download_id, $vendor, 'trash', '15.00', '5.00', 'flat', '5' );
+							create_variable_download( $cli, $download_id, $vendor, 'trash', '15.00', '5.00', 'flat', '5' );
 							$download_id++;
 
 							// one product with $10 flat rate
-							create_variable_download( $download_id, $vendor, 'trash', '15.00', '5.00', 'percentage', '10' );
+							create_variable_download( $cli, $download_id, $vendor, 'trash', '15.00', '5.00', 'percentage', '10' );
 							$download_id++;
 							
 							// one product no commission
-							create_variable_download( $download_id, $vendor, 'trash', '15.00', '5.00', false, '20' );
+							create_variable_download( $cli, $download_id, $vendor, 'trash', '15.00', '5.00', false, '20' );
 							$download_id++;
 						// variable trash
 							// one product with 20% commission
-							create_variable_download( $download_id, $vendor, 'trash', '15.00', '5.00', 'percentage', '20' );
+							create_variable_download( $cli, $download_id, $vendor, 'trash', '15.00', '5.00', 'percentage', '20' );
 							$download_id++;
 
 							// one product with 100% commission
-							create_variable_download( $download_id, $vendor, 'trash', '15.00', '5.00', 'percentage', '100' );
+							create_variable_download( $cli, $download_id, $vendor, 'trash', '15.00', '5.00', 'percentage', '100' );
 							$download_id++;
 
 							// one product with $5 flat rate
-							create_variable_download( $download_id, $vendor, 'trash', '15.00', '5.00', 'flat', '5' );
+							create_variable_download( $cli, $download_id, $vendor, 'trash', '15.00', '5.00', 'flat', '5' );
 							$download_id++;
 
 							// one product with $10 flat rate
-							create_variable_download( $download_id, $vendor, 'trash', '15.00', '5.00', 'percentage', '10' );
+							create_variable_download( $cli, $download_id, $vendor, 'trash', '15.00', '5.00', 'percentage', '10' );
 							$download_id++;
 							
 							// one product no commission
-							create_variable_download( $download_id, $vendor, 'trash', '15.00', '5.00', false, '20' );
+							create_variable_download( $cli, $download_id, $vendor, 'trash', '15.00', '5.00', false, '20' );
 							$download_id++;
 						// simple trash
 							// one product with 20% commission
-							create_simple_download( $download_id, $vendor, 'trash', '15.00', 'percentage', '20' );
+							create_simple_download( $cli, $download_id, $vendor, 'trash', '15.00', 'percentage', '20' );
 							$download_id++;
 
 							// one product with 100% commission
-							create_simple_download( $download_id, $vendor, 'trash', '15.00', 'percentage', '100' );
+							create_simple_download( $cli, $download_id, $vendor, 'trash', '15.00', 'percentage', '100' );
 							$download_id++;
 
 							// one product with $5 flat rate
-							create_simple_download( $download_id, $vendor, 'trash', '15.00', 'flat', '5' );
+							create_simple_download( $cli, $download_id, $vendor, 'trash', '15.00', 'flat', '5' );
 							$download_id++;
 
 							// one product with $10 flat rate
-							create_simple_download( $download_id, $vendor, 'trash', '15.00', 'percentage', '10' );
+							create_simple_download( $cli, $download_id, $vendor, 'trash', '15.00', 'percentage', '10' );
 							$download_id++;
 							
 							// one product no commission
-							create_simple_download( $download_id, $vendor, 'trash', '15.00', false, '20' );
+							create_simple_download( $cli, $download_id, $vendor, 'trash', '15.00', false, '20' );
 							$download_id++;
 						// simple trash
 							// one product with 20% commission
-							create_simple_download( $download_id, $vendor, 'trash', '15.00', 'percentage', '20' );
+							create_simple_download( $cli, $download_id, $vendor, 'trash', '15.00', 'percentage', '20' );
 							$download_id++;
 
 							// one product with 100% commission
-							create_simple_download( $download_id, $vendor, 'trash', '15.00', 'percentage', '100' );
+							create_simple_download( $cli, $download_id, $vendor, 'trash', '15.00', 'percentage', '100' );
 							$download_id++;
 
 							// one product with $5 flat rate
-							create_simple_download( $download_id, $vendor, 'trash', '15.00', 'flat', '5' );
+							create_simple_download( $cli, $download_id, $vendor, 'trash', '15.00', 'flat', '5' );
 							$download_id++;
 
 							// one product with $10 flat rate
-							create_simple_download( $download_id, $vendor, 'trash', '15.00', 'percentage', '10' );
+							create_simple_download( $cli, $download_id, $vendor, 'trash', '15.00', 'percentage', '10' );
 							$download_id++;
 							
 							// one product no commission
-							create_simple_download( $download_id, $vendor, 'trash', '15.00', false, '20' );
+							create_simple_download( $cli, $download_id, $vendor, 'trash', '15.00', false, '20' );
 							$download_id++;
 					break;
 				case 60:
 					// 30 products, one of each of case 25-30, 10 simple/10 variable, all trash
 						// variable trash
 							// one product with 20% commission
-							create_variable_download( $download_id, $vendor, 'trash', '15.00', '5.00', 'percentage', '20' );
+							create_variable_download( $cli, $download_id, $vendor, 'trash', '15.00', '5.00', 'percentage', '20' );
 							$download_id++;
 
 							// one product with 100% commission
-							create_variable_download( $download_id, $vendor, 'trash', '15.00', '5.00', 'percentage', '100' );
+							create_variable_download( $cli, $download_id, $vendor, 'trash', '15.00', '5.00', 'percentage', '100' );
 							$download_id++;
 
 							// one product with $5 flat rate
-							create_variable_download( $download_id, $vendor, 'trash', '15.00', '5.00', 'flat', '5' );
+							create_variable_download( $cli, $download_id, $vendor, 'trash', '15.00', '5.00', 'flat', '5' );
 							$download_id++;
 
 							// one product with $10 flat rate
-							create_variable_download( $download_id, $vendor, 'trash', '15.00', '5.00', 'percentage', '10' );
+							create_variable_download( $cli, $download_id, $vendor, 'trash', '15.00', '5.00', 'percentage', '10' );
 							$download_id++;
 							
 							// one product no commission
-							create_variable_download( $download_id, $vendor, 'trash', '15.00', '5.00', false, '20' );
+							create_variable_download( $cli, $download_id, $vendor, 'trash', '15.00', '5.00', false, '20' );
 							$download_id++;
 						// variable trash
 							// one product with 20% commission
-							create_variable_download( $download_id, $vendor, 'trash', '15.00', '5.00', 'percentage', '20' );
+							create_variable_download( $cli, $download_id, $vendor, 'trash', '15.00', '5.00', 'percentage', '20' );
 							$download_id++;
 
 							// one product with 100% commission
-							create_variable_download( $download_id, $vendor, 'trash', '15.00', '5.00', 'percentage', '100' );
+							create_variable_download( $cli, $download_id, $vendor, 'trash', '15.00', '5.00', 'percentage', '100' );
 							$download_id++;
 
 							// one product with $5 flat rate
-							create_variable_download( $download_id, $vendor, 'trash', '15.00', '5.00', 'flat', '5' );
+							create_variable_download( $cli, $download_id, $vendor, 'trash', '15.00', '5.00', 'flat', '5' );
 							$download_id++;
 
 							// one product with $10 flat rate
-							create_variable_download( $download_id, $vendor, 'trash', '15.00', '5.00', 'percentage', '10' );
+							create_variable_download( $cli, $download_id, $vendor, 'trash', '15.00', '5.00', 'percentage', '10' );
 							$download_id++;
 							
 							// one product no commission
-							create_variable_download( $download_id, $vendor, 'trash', '15.00', '5.00', false, '20' );
+							create_variable_download( $cli, $download_id, $vendor, 'trash', '15.00', '5.00', false, '20' );
 							$download_id++;
 						// simple trash
 							// one product with 20% commission
-							create_simple_download( $download_id, $vendor, 'trash', '15.00', 'percentage', '20' );
+							create_simple_download( $cli, $download_id, $vendor, 'trash', '15.00', 'percentage', '20' );
 							$download_id++;
 
 							// one product with 100% commission
-							create_simple_download( $download_id, $vendor, 'trash', '15.00', 'percentage', '100' );
+							create_simple_download( $cli, $download_id, $vendor, 'trash', '15.00', 'percentage', '100' );
 							$download_id++;
 
 							// one product with $5 flat rate
-							create_simple_download( $download_id, $vendor, 'trash', '15.00', 'flat', '5' );
+							create_simple_download( $cli, $download_id, $vendor, 'trash', '15.00', 'flat', '5' );
 							$download_id++;
 
 							// one product with $10 flat rate
-							create_simple_download( $download_id, $vendor, 'trash', '15.00', 'percentage', '10' );
+							create_simple_download( $cli, $download_id, $vendor, 'trash', '15.00', 'percentage', '10' );
 							$download_id++;
 							
 							// one product no commission
-							create_simple_download( $download_id, $vendor, 'trash', '15.00', false, '20' );
+							create_simple_download( $cli, $download_id, $vendor, 'trash', '15.00', false, '20' );
 							$download_id++;
 						// simple trash
 							// one product with 20% commission
-							create_simple_download( $download_id, $vendor, 'trash', '15.00', 'percentage', '20' );
+							create_simple_download( $cli, $download_id, $vendor, 'trash', '15.00', 'percentage', '20' );
 							$download_id++;
 
 							// one product with 100% commission
-							create_simple_download( $download_id, $vendor, 'trash', '15.00', 'percentage', '100' );
+							create_simple_download( $cli, $download_id, $vendor, 'trash', '15.00', 'percentage', '100' );
 							$download_id++;
 
 							// one product with $5 flat rate
-							create_simple_download( $download_id, $vendor, 'trash', '15.00', 'flat', '5' );
+							create_simple_download( $cli, $download_id, $vendor, 'trash', '15.00', 'flat', '5' );
 							$download_id++;
 
 							// one product with $10 flat rate
-							create_simple_download( $download_id, $vendor, 'trash', '15.00', 'percentage', '10' );
+							create_simple_download( $cli, $download_id, $vendor, 'trash', '15.00', 'percentage', '10' );
 							$download_id++;
 							
 							// one product no commission
-							create_simple_download( $download_id, $vendor, 'trash', '15.00', false, '20' );
+							create_simple_download( $cli, $download_id, $vendor, 'trash', '15.00', false, '20' );
 							$download_id++;
 						// variable trash
 							// one product with 20% commission
-							create_variable_download( $download_id, $vendor, 'trash', '15.00', '5.00', 'percentage', '20' );
+							create_variable_download( $cli, $download_id, $vendor, 'trash', '15.00', '5.00', 'percentage', '20' );
 							$download_id++;
 
 							// one product with 100% commission
-							create_variable_download( $download_id, $vendor, 'trash', '15.00', '5.00', 'percentage', '100' );
+							create_variable_download( $cli, $download_id, $vendor, 'trash', '15.00', '5.00', 'percentage', '100' );
 							$download_id++;
 
 							// one product with $5 flat rate
-							create_variable_download( $download_id, $vendor, 'trash', '15.00', '5.00', 'flat', '5' );
+							create_variable_download( $cli, $download_id, $vendor, 'trash', '15.00', '5.00', 'flat', '5' );
 							$download_id++;
 
 							// one product with $10 flat rate
-							create_variable_download( $download_id, $vendor, 'trash', '15.00', '5.00', 'percentage', '10' );
+							create_variable_download( $cli, $download_id, $vendor, 'trash', '15.00', '5.00', 'percentage', '10' );
 							$download_id++;
 							
 							// one product no commission
-							create_variable_download( $download_id, $vendor, 'trash', '15.00', '5.00', false, '20' );
+							create_variable_download( $cli, $download_id, $vendor, 'trash', '15.00', '5.00', false, '20' );
 							$download_id++;
 						// simple trash
 							// one product with 20% commission
-							create_simple_download( $download_id, $vendor, 'trash', '15.00', 'percentage', '20' );
+							create_simple_download( $cli, $download_id, $vendor, 'trash', '15.00', 'percentage', '20' );
 							$download_id++;
 
 							// one product with 100% commission
-							create_simple_download( $download_id, $vendor, 'trash', '15.00', 'percentage', '100' );
+							create_simple_download( $cli, $download_id, $vendor, 'trash', '15.00', 'percentage', '100' );
 							$download_id++;
 
 							// one product with $5 flat rate
-							create_simple_download( $download_id, $vendor, 'trash', '15.00', 'flat', '5' );
+							create_simple_download( $cli, $download_id, $vendor, 'trash', '15.00', 'flat', '5' );
 							$download_id++;
 
 							// one product with $10 flat rate
-							create_simple_download( $download_id, $vendor, 'trash', '15.00', 'percentage', '10' );
+							create_simple_download( $cli, $download_id, $vendor, 'trash', '15.00', 'percentage', '10' );
 							$download_id++;
 							
 							// one product no commission
-							create_simple_download( $download_id, $vendor, 'trash', '15.00', false, '20' );
+							create_simple_download( $cli, $download_id, $vendor, 'trash', '15.00', false, '20' );
 							$download_id++;
 					break;
 			}
@@ -554,18 +554,18 @@ function fes_ddg_create_data(){
 	}
 
 	// create a normal user
-	$user_id = fes_ddg_create_a_user( $vendor_id );
+	$user_id = fes_ddg_create_a_user( $cli, $vendor_id );
 	$vendor_id++;
 	// with a normal download
-	create_simple_download( $download_id, $user_id, 'publish', '15.00', 'percentage', '20' );
+	create_simple_download( $cli, $download_id, $user_id, 'publish', '15.00', 'percentage', '20' );
 	$download_id++;
 
    // create orders
-   fes_ddg_create_payments();
+   fes_ddg_create_payments( $cli );
 }
 
 
-function create_simple_download( $int, $author, $status, $price, $commissions_type = 'percentage', $commission_amount = '80' ) {
+function create_simple_download( $cli, $int, $author, $status, $price, $commissions_type = 'percentage', $commission_amount = '80' ) {
 
 	$post_id = @wp_insert_post( array(
 		'post_title'    => 'Download Product #' .  $int,
@@ -609,9 +609,13 @@ function create_simple_download( $int, $author, $status, $price, $commissions_ty
 		$meta['type']    = $commissions_type;
 		update_post_meta( $post_id, '_edd_commisions_settings', $meta );
 	}
+
+	if ( $cli ){
+		WP_CLI::line( "Created download #" . $int . " of 301" );
+	}	
 }
 
-function create_variable_download( $int, $author, $status, $price1, $price2, $commissions_type, $commission_amount ) {
+function create_variable_download( $cli, $int, $author, $status, $price1, $price2, $commissions_type, $commission_amount ) {
 
 	$post_id = @wp_insert_post( array(
 		'post_title'    => 'Download Product #' .  $int,
@@ -672,9 +676,13 @@ function create_variable_download( $int, $author, $status, $price1, $price2, $co
 		$meta['type']    = $commissions_type;
 		update_post_meta( $post_id, '_edd_commisions_settings', $meta );
 	}
+
+	if ( $cli ){
+		WP_CLI::line( "Created download #" . $int . " of 301" );
+	}	
 }
 
-function fes_ddg_create_a_vendor( $int, $status ){
+function fes_ddg_create_a_vendor( $cli, $int, $status ){
 	$email = $int . "+example@example.com";
 	$username = $int;
 	$display_name = "Vendor " . $int;
@@ -718,10 +726,15 @@ function fes_ddg_create_a_vendor( $int, $status ){
 	if ( $status === 'approved' ){
 		$user->add_role( 'frontend_vendor' );
 	}
+
+	if ( $cli ){
+		WP_CLI::line( "Created vendor #" . $int . " of 60" );
+	}
+
 	return $user_id;
 }
 
-function fes_ddg_create_a_user( $int ){
+function fes_ddg_create_a_user( $cli, $int ){
 	$email = $int . "+example@example.com";
 	$username = $int;
 	$display_name = "User " . $int;
@@ -740,10 +753,15 @@ function fes_ddg_create_a_user( $int ){
 	$user_id = wp_insert_user( $args ); // create the user
 	$user = new WP_User( $user_id );
 	$user->add_role( 'author' );
+
+	if ( $cli ){
+		WP_CLI::line( "Created demo author" );
+	}
+
 	return $user_id;
 }
 
-function fes_ddg_create_payments() {
+function fes_ddg_create_payments( $cli ) {
 	$error = false;
 	// Setup some defaults
 	$number     = 100;
@@ -763,11 +781,12 @@ function fes_ddg_create_payments() {
 	for( $i = 0; $i < $number; $i++ ) {
 		$products = array();
 		$total    = 0;
+		$count    = rand( 1, 8 );
 		$products = get_posts( array(
 			'post_type'     => 'download',
 			'orderby'       => 'rand',
 			'order'         => 'ASC',
-			'posts_per_page'=> 1
+			'posts_per_page'=> $count
 		) );
 		$cart_details = array();
 		// Create the purchases
@@ -775,6 +794,11 @@ function fes_ddg_create_payments() {
 			if( ! is_a( $download, 'WP_Post' ) ) {
 				continue;
 			}
+
+			if ( $i === 70 ){
+				$status = 'pending';
+			}
+
 			$options = array();
 			$final_downloads = array();
 			// Deal with variable pricing
@@ -818,10 +842,14 @@ function fes_ddg_create_payments() {
 			'cart_details'  => $cart_details,
 			'status'        => 'pending'
 		);
-		$payment_id = edd_insert_payment( $purchase_data );
+		$payment_id = @edd_insert_payment( $purchase_data );
 		remove_action( 'edd_complete_purchase', 'edd_trigger_purchase_receipt', 999 );
-		if( $status != 'pending' ) {
-			edd_update_payment_status( $payment_id, $status );
+		if ( $status != 'pending' ) {
+			@edd_update_payment_status( $payment_id, $status );
 		}
+
+		if ( $cli ){
+			WP_CLI::line( "Created order #" . ($i + 1) . " of 100" );
+		}		
 	}
 }

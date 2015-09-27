@@ -7,5 +7,7 @@ Data Generated:
 - Sales in various states with commission payments in various states
 - more to come
 
-Will come as a WordPress plugin with a CLI component (that way we can use it on sites where CLI isn't possible or easy to do)
+A WordPress plugin with a CLI command ( fes-ddg generate )
+
+Note: right now takes about 10-15 minutes to run on admin UI and about the same via CLI. Generates 60 vendor accounts with 300 downloads, a standard author with 1 download and 100 random orders.
 

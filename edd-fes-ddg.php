@@ -15,9 +15,14 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 class EDD_FES_DDG {
 	function __construct() {
-		add_action( 'admin_menu', array( &$this, 'add_page' ) );
-		add_action( 'plugins_loaded', array( &$this, 'admin_init' ) );
-		add_action('admin_notices', array( &$this, 'success_notice') );
+		if ( defined( 'WP_CLI' ) && WP_CLI ) { 
+    		require_once dirname( __FILE__ ) . '/wp-cli.php';
+    	} else {
+			add_action( 'admin_menu', array( &$this, 'add_page' ) );
+			add_action( 'plugins_loaded', array( &$this, 'admin_init' ) );
+			add_action('admin_notices', array( &$this, 'success_notice') );
+		}
+
 		if ( ! defined( 'DDG_PLUGIN_DIR' ) ) {
 			define('DDG_PLUGIN_DIR', plugin_dir_path(__FILE__));
 		}
@@ -27,7 +32,7 @@ class EDD_FES_DDG {
 	function admin_init() {
 	   if ( ! empty( $_REQUEST ) && isset( $_REQUEST['fes_dummy_data_form_nonce'] ) ){
 		   if ( (bool) wp_verify_nonce( $_REQUEST['fes_dummy_data_form_nonce'], 'fes_dummy_data_form_nonce' ) ){
-			   fes_ddg_create_data();
+			   fes_ddg_create_data( false );
 			   wp_redirect(admin_url() . '?createddata=true');
 			   exit();
 		   }
