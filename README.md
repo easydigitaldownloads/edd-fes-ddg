@@ -9,5 +9,5 @@ Data Generated:
 
 A WordPress plugin with a CLI command ( fes-ddg generate )
 
-Note: right now takes about 10-15 minutes to run on admin UI and about the same via CLI. Generates 60 vendor accounts with 300 downloads, a standard author with 1 download and 100 random orders.
+Note: right now takes about 10-15 minutes to run on admin UI and about 8 minutes via CLI. Generates 60 vendor accounts with 300 downloads, a standard author with 1 download and 100 random orders.
 
